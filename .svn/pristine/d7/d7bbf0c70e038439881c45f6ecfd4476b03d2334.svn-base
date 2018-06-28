@@ -1,0 +1,41 @@
+package com.steward.server.position.Impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+
+import com.steward.dao.position.MobRegMapper;
+import com.steward.dao.position.MobRegPositionMapper;
+import com.steward.dto.position.ShopDTO;
+import com.steward.dto.position.ShopMsgDTO;
+import com.steward.dto.position.UserMsgDTO;
+import com.steward.server.position.MobRegPositionService;
+@Service
+public class MobRegPositionServiceImpl implements MobRegPositionService {
+	@Resource
+	private MobRegPositionMapper mobRegPositionMapper;
+	@Resource
+	private MobRegMapper mobRegMapper;
+	
+	
+
+
+	@Override
+	public List<ShopMsgDTO> selectShopMsg(ShopDTO shopDTO) {
+		// TODO Auto-generated method stub
+		return mobRegPositionMapper.selectShopMsg(shopDTO);
+	}
+
+	@Override
+	public List<UserMsgDTO> selectUserList(String leftLatitude,String leftLongitude,String rightLatitude, String rightLongitude) {
+		// TODO Auto-generated method stub
+		return mobRegMapper.selectUserList(leftLatitude,leftLongitude ,rightLatitude,rightLongitude);
+	}
+
+	
+
+	
+}

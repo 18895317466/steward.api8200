@@ -1,0 +1,19 @@
+package com.steward.dao.position;
+
+import java.util.List;
+
+
+
+import com.steward.dto.position.ShopDTO;
+import com.steward.dto.position.ShopMsgDTO;
+
+
+public interface MobRegPositionMapper {
+//	int   insert( MobRegPosition mobRegPosition);
+	// 区域门店经营信息
+	List<ShopMsgDTO> selectShopMsg(ShopDTO shopDTO);
+	//用户定位信息
+	
+	//List<MobRegPosition> selectUserPosition(UserPositionDTO userPositionDTO);
+	
+}

@@ -1,0 +1,52 @@
+package com.steward.dto.position;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+public class UserPositionDTO implements Serializable {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private BigDecimal leftLatitude ;
+	 private BigDecimal leftLongitude ;
+	 private BigDecimal rightLatitude ; 
+	 private BigDecimal rightLongitude;
+	 @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	 private Date time;
+	public BigDecimal getLeftLatitude() {
+		return leftLatitude;
+	}
+	public void setLeftLatitude(BigDecimal leftLatitude) {
+		this.leftLatitude = leftLatitude;
+	}
+	public BigDecimal getLeftLongitude() {
+		return leftLongitude;
+	}
+	public void setLeftLongitude(BigDecimal leftLongitude) {
+		this.leftLongitude = leftLongitude;
+	}
+	public BigDecimal getRightLatitude() {
+		return rightLatitude;
+	}
+	public void setRightLatitude(BigDecimal rightLatitude) {
+		this.rightLatitude = rightLatitude;
+	}
+	public BigDecimal getRightLongitude() {
+		return rightLongitude;
+	}
+	public void setRightLongitude(BigDecimal rightLongitude) {
+		this.rightLongitude = rightLongitude;
+	}
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
+	}
+	 
+	 
+}

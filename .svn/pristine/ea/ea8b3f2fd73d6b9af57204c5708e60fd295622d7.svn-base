@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steward.dao.position.MobRegPositionMapper">
+	<resultMap id="BaseResultMap" type="com.steward.model.position.MobRegPosition">
+		<id column="id" jdbcType="CHAR" property="id" />
+		<result column="mobileId" jdbcType="CHAR" property="mobileId" />
+		<result column="mobileNo" jdbcType="VARCHAR" property="mobileNo" />
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		<result column="add_date" jdbcType="TIMESTAMP" property="addDate" />				
+	</resultMap>
+		
+	<sql id="Base_Column_List">
+		id,mobileId,mobileNo,latitude,longitude,add_date
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_Mob_Reg_Position
+		where id = #{id,jdbcType=CHAR}
+	</select>
+
+	<select id="selectCustomersByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from T_Mob_Reg_Position
+		where mobileNo = #{mobileNo}
+	</select>
+	
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from T_Mob_Reg_Position
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.steward.model.position.MobRegPosition">
+		insert into T_Mob_Reg_Position (id,mobileId,mobileNo,latitude,longitude,add_date
+		)
+		values (#{id,jdbcType=CHAR}, #{mobileId,jdbcType=VARCHAR},
+		#{mobileNo,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, #{addDate,jdbcType=TIMESTAMP}			
+		)
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.steward.model.position.MobRegPosition">
+		update T_Mob_Reg_Position
+		<set>
+			<if test="mobileId != null">
+				mobileId = #{mobileId,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileNo != null">
+				mobileNo = #{custNo,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="add_date != null">
+				add_date = #{add_date,jdbcType=TIMESTAMP},
+			</if>
+			
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<!-- 门店经营数据   -->
+	<select id="selectShopMsg" parameterType="com.steward.dto.position.ShopDTO" resultType="com.steward.dto.position.ShopMsgDTO"> 
+
+			
+			select t.id,t.shop_name shopName,COUNT(t1.id) number,t.latitude,t.longitude, SUM(t1.sales_amt) salAmt
+			FROM T_Cm_Shop t,T_Sal_Consume t1
+			WHERE t.id=t1.shop_id
+			AND   t1.status_cd=1			
+			 <!-- latitude 纬度 longitude 经度   -->
+     		AND		t.latitude  BETWEEN  #{rightLatitude,jdbcType=VARCHAR}    AND #{leftLatitude,jdbcType=VARCHAR}												
+			AND     t.longitude BETWEEN  #{leftLongitude ,jdbcType=VARCHAR}  AND #{rightLongitude,jdbcType=VARCHAR}			
+			<if test="startTime  != null">
+			AND   t1.update_date BETWEEN #{startTime} AND #{endTime}		    		
+			</if>
+			AND  t.id=t1.shop_id
+			<if test="shopName != null">			
+			 AND  t.id=#{shopName}			
+			</if>
+			GROUP BY  t.id,t.shop_name,t.sal_num,t.latitude,t.longitude
+						
+	</select> 
+	
+	
+
+	
+</mapper>

@@ -1,0 +1,267 @@
+package com.steward.model.customer;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+
+
+/**
+ * T_Vip_Customer
+ * @author mastercheng
+ *
+ */
+public class Customer implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5614174608890069855L;
+
+	
+	private String id;
+
+    private String custName;
+
+    private String custNo;
+
+    private String shopId;
+
+    private Boolean isMember;
+
+    private Integer sexInd;
+
+    private String certNo;
+
+    private String tel;
+
+    private String telphone;
+
+    private String addr;
+
+    private String areaAddr;
+
+    private Boolean acctInd;
+
+    private BigDecimal acctUpper;
+
+    private BigDecimal acctWarning;
+
+    private String acctOpr;
+
+    private Boolean useInd;
+
+    private Date lastDate;
+
+    private Date nextDate;
+
+    private Date addDate;
+
+    private String updateOpr;
+
+    private Date updateDate;
+
+    private Date birthday;
+
+    private String remark;
+
+    private String tVipAcctId;
+    
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName == null ? null : custName.trim();
+    }
+
+    public String getCustNo() {
+        return custNo;
+    }
+
+    public void setCustNo(String custNo) {
+        this.custNo = custNo == null ? null : custNo.trim();
+    }
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId == null ? null : shopId.trim();
+    }
+
+    public Boolean getIsMember() {
+        return isMember;
+    }
+
+    public void setIsMember(Boolean isMember) {
+        this.isMember = isMember;
+    }
+
+    public Integer getSexInd() {
+        return sexInd;
+    }
+
+    public void setSexInd(Integer sexInd) {
+        this.sexInd = sexInd;
+    }
+
+    public String getCertNo() {
+        return certNo;
+    }
+
+    public void setCertNo(String certNo) {
+        this.certNo = certNo == null ? null : certNo.trim();
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone == null ? null : telphone.trim();
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr == null ? null : addr.trim();
+    }
+
+    public String getAreaAddr() {
+        return areaAddr;
+    }
+
+    public void setAreaAddr(String areaAddr) {
+        this.areaAddr = areaAddr == null ? null : areaAddr.trim();
+    }
+
+    public Boolean getAcctInd() {
+        return acctInd;
+    }
+
+    public void setAcctInd(Boolean acctInd) {
+        this.acctInd = acctInd;
+    }
+
+    public BigDecimal getAcctUpper() {
+        return acctUpper;
+    }
+
+    public void setAcctUpper(BigDecimal acctUpper) {
+        this.acctUpper = acctUpper;
+    }
+
+    public BigDecimal getAcctWarning() {
+        return acctWarning;
+    }
+
+    public void setAcctWarning(BigDecimal acctWarning) {
+        this.acctWarning = acctWarning;
+    }
+
+    public String getAcctOpr() {
+        return acctOpr;
+    }
+
+    public void setAcctOpr(String acctOpr) {
+        this.acctOpr = acctOpr == null ? null : acctOpr.trim();
+    }
+
+    public Boolean getUseInd() {
+        return useInd;
+    }
+
+    public void setUseInd(Boolean useInd) {
+        this.useInd = useInd;
+    }
+
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    public Date getNextDate() {
+        return nextDate;
+    }
+
+    public void setNextDate(Date nextDate) {
+        this.nextDate = nextDate;
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
+    }
+
+    public String getUpdateOpr() {
+        return updateOpr;
+    }
+
+    public void setUpdateOpr(String updateOpr) {
+        this.updateOpr = updateOpr == null ? null : updateOpr.trim();
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String gettVipAcctId() {
+        return tVipAcctId;
+    }
+
+    public void settVipAcctId(String tVipAcctId) {
+        this.tVipAcctId = tVipAcctId == null ? null : tVipAcctId.trim();
+    }
+
+
+    
+    
+}

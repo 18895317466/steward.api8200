@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <!-- 头部 start -->
+  <div class="layui-header">
+    <div class="layui-logo">layui 后台布局</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+	<ul class="layui-nav layui-layout-left">
+	  <li class="layui-nav-item"><a href="">控制台</a></li>
+	  <li class="layui-nav-item"><a href="">商品管理</a></li>
+	  <li class="layui-nav-item"><a href="">用户</a></li>
+	  <li class="layui-nav-item layui-this">
+	    <a href="javascript:;">其他系统</a>
+	    <dl class="layui-nav-child">
+	      <dd><a href="">右键管理</a></dd>
+	      <dd><a href="">消息管理</a></dd>
+	      <dd><a href="">授权管理</a></dd>
+	    </dl>
+	  </li>
+	</ul>
+	<!-- ============================== -->
+	<ul class="layui-nav layui-layout-right" >
+		<li class="layui-nav-item">
+			<a href="javascript:l"><img src="http://t.cn/RCzsdCq" class="layui-nav-img">大阳</a>
+		 	<dl class="layui-nav-child">
+		 		<dd><a href="">基本资料</a></dd>
+	      		<dd><a href="">安全</a></dd>
+		 	</dl>
+		</li>
+		<li class="layui-nav-item"><a href="">退出</a></li>
+	</ul>
+	
+  </div>
+   <!-- 头部 end -->
+    <!-- 左侧导航 start -->
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">所有商品</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">列表一</a></dd>
+            <dd><a href="javascript:;">列表二</a></dd>
+            <dd><a href="javascript:;">列表三</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">解决方案</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">列表一</a></dd>
+            <dd><a href="javascript:;">列表二</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+      </ul>
+    </div>
+  </div>
+  
+   <!-- 内容主体区域 -->
+  <div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
+    	<div class="layui-tab admin-card lay-ui-tab-brief" lay-filter="admin-tab">
+    		 <ul class="layui-tab-title">
+    		 	 <li class="layui-this">
+    		 		 <i class="fa fa-dashboard" aria-hidden="true"></i>
+    		 	 	<cite>控制面板</cite>
+    		 	 </li>
+    		 </ul>
+    		 <!-- tab 下内容 -->
+    		 <div class="layui-tab-content" style="min-height:250px; padding: 5px 0 0 0;">
+    		  		<div class="layui-tab-item layui-show">
+    		  		 	<iframe src="./test/main.html" style="marginwidth:0; marginheight:0; frameborder:0; "></iframe>
+    		  		</div>
+    		 </div>
+   		 </div>
+   
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script src="../layui/layui.js"></script>
+<script>
+	layui.use(['element','layer','navbar','tab'], function(){
+	  var element = layui.element,
+	  $=layui.jquery,
+	  layer=layui.layer,
+	  navbar=layui.navbar();//导航的hover效果、二级菜单等功能，需要依赖element模块
+	  
+	  //监听导航点击
+	  element.on('nav(demo)', function(elem){
+	    console.log(elem)
+	    layer.msg(elem.text());
+	  });
+	  
+	  
+	  //iframe 自适应
+	    //iframe自适应
+	    $(window).on('resize', function () {
+	        var $content = $('.admin-nav-card .layui-tab-content');
+	        $content.height($(this).height() - 147);
+	        $content.find('iframe').each(function () {
+	            $(this).height($content.height());
+	        });
+	    }).resize();
+	  
+	  
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+package com.steward.server.position;
+
+import java.util.List;
+
+import com.steward.dto.position.ShopDTO;
+import com.steward.dto.position.ShopMsgDTO;
+import com.steward.dto.position.UserMsgDTO;
+
+public interface MobRegPositionService {
+//	int insert(MobRegPosition mobRegPosition);
+	/**
+	 * 门店经营数据
+	 * @param shopDTO
+	 * @return
+	 */
+	List<ShopMsgDTO> selectShopMsg(ShopDTO shopDTO);
+	/**
+	 * 区域门店用户
+	 * @param leftlatitude
+	 * @param leftlongitude
+	 * @param rightlatitude
+	 * @param rightlongitude
+	 * @return
+	 */
+	List<UserMsgDTO> selectUserList(String leftLatitude,String leftLongitude,String rightLatitude, String rightLongitude);
+	/**
+	 * 区域用户数据
+	 */
+	//List<MobRegPosition> selectUserPosition(UserPositionDTO userPositionDTO);
+	
+	
+}

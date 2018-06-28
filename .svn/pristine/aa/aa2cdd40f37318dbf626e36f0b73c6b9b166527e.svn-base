@@ -1,0 +1,67 @@
+package com.steward.dto.position;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+public class ShopDTO{
+	 private String shopName;
+	
+	 @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	 private Date startTime;
+	 @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+	 private Date  endTime;
+	 
+	 private double leftLatitude ;
+	 private double leftLongitude ;
+	 private double rightLatitude ; 
+	 private double rightLongitude;
+
+	 public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
+	public Date getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	public Date getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	public double getLeftLatitude() {
+		return leftLatitude;
+	}
+	public void setLeftLatitude(double leftLatitude) {
+		this.leftLatitude = leftLatitude;
+	}
+	public double getLeftLongitude() {
+		return leftLongitude;
+	}
+	public void setLeftLongitude(double leftLongitude) {
+		this.leftLongitude = leftLongitude;
+	}
+	public double getRightLatitude() {
+		return rightLatitude;
+	}
+	public void setRightLatitude(double rightLatitude) {
+		this.rightLatitude = rightLatitude;
+	}
+	public double getRightLongitude() {
+		return rightLongitude;
+	}
+	public void setRightLongitude(double rightLongitude) {
+		this.rightLongitude = rightLongitude;
+	}
+	
+	
+	 
+	 
+}

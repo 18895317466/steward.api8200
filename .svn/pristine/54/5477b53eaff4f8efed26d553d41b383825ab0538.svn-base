@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steward.dao.position.MobRegMapper">
+	<resultMap id="BaseResultMap" type="com.steward.model.customer.Customer">
+		<id column="id" jdbcType="CHAR" property="id" />
+		<result column="cust_name" jdbcType="NVARCHAR" property="custName" />
+		<result column="cust_no" jdbcType="NVARCHAR" property="custNo" />
+		<result column="shop_id" jdbcType="CHAR" property="shopId" />
+		<result column="is_member" jdbcType="BIT" property="isMember" />
+		<result column="sex_ind" jdbcType="INTEGER" property="sexInd" />
+		<result column="cert_no" jdbcType="NVARCHAR" property="certNo" />
+		<result column="tel" jdbcType="NVARCHAR" property="tel" />
+		<result column="telphone" jdbcType="NVARCHAR" property="telphone" />
+		<result column="addr" jdbcType="NVARCHAR" property="addr" />
+		<result column="area_addr" jdbcType="NVARCHAR" property="areaAddr" />
+		<result column="acct_ind" jdbcType="BIT" property="acctInd" />
+		<result column="acct_upper" jdbcType="DECIMAL" property="acctUpper" />
+		<result column="acct_warning" jdbcType="DECIMAL" property="acctWarning" />
+		<result column="acct_opr" jdbcType="NVARCHAR" property="acctOpr" />
+		<result column="use_ind" jdbcType="BIT" property="useInd" />
+		<result column="last_date" jdbcType="TIMESTAMP" property="lastDate" />
+		<result column="next_date" jdbcType="TIMESTAMP" property="nextDate" />
+		<result column="add_date" jdbcType="TIMESTAMP" property="addDate" />
+		<result column="update_opr" jdbcType="NVARCHAR" property="updateOpr" />
+		<result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+		<result column="remark" jdbcType="NVARCHAR" property="remark" />
+		<result column="T_Vip_Acct_ID" jdbcType="CHAR" property="tVipAcctId" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, cust_name, cust_no, shop_id, is_member, sex_ind, cert_no, tel,
+		telphone, addr,
+		area_addr, acct_ind, acct_upper, acct_warning, acct_opr, use_ind, last_date,
+		next_date,
+		add_date, update_opr, update_date, birthday, remark, T_Vip_Acct_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from T_Vip_Customer
+		where id = #{id,jdbcType=CHAR}
+	</select>
+
+	
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from T_Vip_Customer
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.steward.model.customer.Customer">
+		insert into T_Vip_Customer (id, cust_name, cust_no,
+		shop_id, is_member, sex_ind,
+		cert_no, tel, telphone,
+		addr, area_addr, acct_ind,
+		acct_upper, acct_warning, acct_opr,
+		use_ind, last_date, next_date,
+		add_date, update_opr, update_date,
+		birthday, remark, T_Vip_Acct_ID
+		)
+		values (#{id,jdbcType=CHAR}, #{custName,jdbcType=NVARCHAR},
+		#{custNo,jdbcType=NVARCHAR},
+		#{shopId,jdbcType=CHAR}, #{isMember,jdbcType=BIT}, #{sexInd,jdbcType=INTEGER},
+		#{certNo,jdbcType=NVARCHAR}, #{tel,jdbcType=NVARCHAR},
+		#{telphone,jdbcType=NVARCHAR},
+		#{addr,jdbcType=NVARCHAR}, #{areaAddr,jdbcType=NVARCHAR}, #{acctInd,jdbcType=BIT},
+		#{acctUpper,jdbcType=DECIMAL}, #{acctWarning,jdbcType=DECIMAL},
+		#{acctOpr,jdbcType=NVARCHAR},
+		#{useInd,jdbcType=BIT}, #{lastDate,jdbcType=TIMESTAMP}, #{nextDate,jdbcType=TIMESTAMP},
+		#{addDate,jdbcType=TIMESTAMP}, #{updateOpr,jdbcType=NVARCHAR},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{birthday,jdbcType=TIMESTAMP}, #{remark,jdbcType=NVARCHAR}, #{tVipAcctId,jdbcType=CHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.steward.model.customer.Customer">
+		update T_Vip_Customer
+		<set>
+			<if test="custName != null">
+				cust_name = #{custName,jdbcType=NVARCHAR},
+			</if>
+			<if test="custNo != null">
+				cust_no = #{custNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="shopId != null">
+				shop_id = #{shopId,jdbcType=CHAR},
+			</if>
+			<if test="isMember != null">
+				is_member = #{isMember,jdbcType=BIT},
+			</if>
+			<if test="sexInd != null">
+				sex_ind = #{sexInd,jdbcType=INTEGER},
+			</if>
+			<if test="certNo != null">
+				cert_no = #{certNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=NVARCHAR},
+			</if>
+			<if test="telphone != null">
+				telphone = #{telphone,jdbcType=NVARCHAR},
+			</if>
+			<if test="addr != null">
+				addr = #{addr,jdbcType=NVARCHAR},
+			</if>
+			<if test="areaAddr != null">
+				area_addr = #{areaAddr,jdbcType=NVARCHAR},
+			</if>
+			<if test="acctInd != null">
+				acct_ind = #{acctInd,jdbcType=BIT},
+			</if>
+			<if test="acctUpper != null">
+				acct_upper = #{acctUpper,jdbcType=DECIMAL},
+			</if>
+			<if test="acctWarning != null">
+				acct_warning = #{acctWarning,jdbcType=DECIMAL},
+			</if>
+			<if test="acctOpr != null">
+				acct_opr = #{acctOpr,jdbcType=NVARCHAR},
+			</if>
+			<if test="useInd != null">
+				use_ind = #{useInd,jdbcType=BIT},
+			</if>
+			<if test="lastDate != null">
+				last_date = #{lastDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nextDate != null">
+				next_date = #{nextDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="addDate != null">
+				add_date = #{addDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateOpr != null">
+				update_opr = #{updateOpr,jdbcType=NVARCHAR},
+			</if>
+			<if test="updateDate != null">
+				update_date = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=NVARCHAR},
+			</if>
+			<if test="tVipAcctId != null">
+				T_Vip_Acct_ID = #{tVipAcctId,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	
+	
+	<resultMap id="BaseResultMap1" type="com.steward.dto.position.UserMsgDTO">		
+		<id column="id" jdbcType="CHAR" property="id" />		
+		<result column="cust_name" jdbcType="NVARCHAR" property="custName" />
+		<result column="cust_no" jdbcType="NVARCHAR" property="custNo" />
+		<result column="shop_id" jdbcType="CHAR" property="shopId" />
+		<result column="is_member" jdbcType="BIT" property="isMember" />
+		<result column="sex_ind" jdbcType="INTEGER" property="sexInd" />
+		<result column="cert_no" jdbcType="NVARCHAR" property="certNo" />
+		<result column="tel" jdbcType="NVARCHAR" property="tel" />
+		<result column="telphone" jdbcType="NVARCHAR" property="telphone" />
+		<result column="addr" jdbcType="NVARCHAR" property="addr" />
+		<result column="area_addr" jdbcType="NVARCHAR" property="areaAddr" />
+		<result column="acct_ind" jdbcType="BIT" property="acctInd" />
+		<result column="acct_upper" jdbcType="DECIMAL" property="acctUpper" />
+		<result column="acct_warning" jdbcType="DECIMAL" property="acctWarning" />
+		<result column="acct_opr" jdbcType="NVARCHAR" property="acctOpr" />
+		<result column="use_ind" jdbcType="BIT" property="useInd" />
+		<result column="last_date" jdbcType="TIMESTAMP" property="lastDate" />
+		<result column="next_date" jdbcType="TIMESTAMP" property="nextDate" />
+		<result column="add_date" jdbcType="TIMESTAMP" property="addDate" />
+		<result column="update_opr" jdbcType="NVARCHAR" property="updateOpr" />
+		<result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+		<result column="remark" jdbcType="NVARCHAR" property="remark" />
+		<result column="T_Vip_Acct_ID" jdbcType="CHAR" property="tVipAcctId" />
+		<result column="shop_name" jdbcType="NVARCHAR" property="shopName" />
+	</resultMap>
+<sql id="Base_Column_List1">
+		t.id, t.cust_name, t.cust_no, t.shop_id, t.is_member, t.sex_ind, t.cert_no, t.tel,
+		t.telphone, t.addr,
+		t.area_addr, t.acct_ind, t.acct_upper, t.acct_warning, t.acct_opr, t.use_ind, t.last_date,
+		t.next_date,
+		t.add_date, t.update_opr, t.update_date, t.birthday, t.remark, t.T_Vip_Acct_ID,a.shop_name
+	</sql>
+	<!-- 区域门店用户数据 -->
+	<select id="selectUserList" parameterType="java.lang.String" resultMap="BaseResultMap1">
+	SELECT <include refid="Base_Column_List1" />
+	 FROM   T_Vip_Customer t,(
+		SELECT id,shop_name FROM T_Cm_Shop
+			WHERE
+			shop_type=1			
+			AND   latitude  &gt; #{leftLatitude }					
+			AND   latitude  &lt; #{rightLatitude}			
+			AND   longitude &gt; #{leftLongitude}			
+			AND   longitude &lt; #{rightLongitude}			
+	) a   
+	WHERE t.shop_id = a.id 
+		
+</select>
+	
+	
+</mapper>

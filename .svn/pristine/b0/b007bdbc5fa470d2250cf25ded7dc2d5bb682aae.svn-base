@@ -1,0 +1,116 @@
+package com.steward.controller.position;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.steward.commons.ConstData;
+import com.steward.commons.Result;
+import com.steward.dto.position.ShopDTO;
+import com.steward.dto.position.ShopMsgDTO;
+import com.steward.dto.position.UserMsgDTO;
+import com.steward.dto.position.UserPositionDTO;
+import com.steward.model.position.MobRegPosition;
+import com.steward.server.position.MobRegPositionService;
+
+@RestController
+public class MobRegPositionController {
+	@Resource
+	private MobRegPositionService mobRegPositionService;
+	
+	/***
+	 *  PC接口，返回区域门店用户数据 POST/data/ver1/queryShopBusiness
+	 * @param shopName
+	 * @param startTime
+	 * @param endTime
+	 * @param leftLatitude 
+	 * @param leftLongitude 
+	 * @param rightLatitude  
+	 * @param rightLongitude  
+	 * @return@RequestParam("shopName")String shopName,
+	 * @throws ParseException 
+	 */
+	@PostMapping("/data/ver1/queryShopUserList/{random}")
+	public @ResponseBody String queryShopUserList(
+			@RequestParam("leftLatitude")String leftLatitude,@RequestParam("leftLongitude")String leftLongitude,
+			@RequestParam("rightLatitude")String rightLatitude,@RequestParam("rightLongitude")String rightLongitude) throws ParseException{
+		Result<List<UserMsgDTO>> result=new  Result<List<UserMsgDTO>>();		
+
+		List<UserMsgDTO>  userList=mobRegPositionService.selectUserList(leftLatitude,leftLongitude ,rightLatitude,rightLongitude);
+		if(userList==null) {
+			result.setCode(ConstData.NOT_FOUND_CODE);
+			result.setMessage("不在范围内或此店没有用户！");
+			return JSONObject.toJSONString(result, SerializerFeature.WriteMapNullValue);
+		}
+		System.out.println(userList.toArray());
+		result.setCode(ConstData.SUCCESS_CODE);
+		result.setContent(userList);
+		return JSONObject.toJSONString(result, SerializerFeature.WriteMapNullValue);
+		
+	}
+				
+	
+	
+	/***
+	 *  门店运营 POST/data/ver1/queryShopBusiness   8002
+	 * @param shopName
+	 * @param startTime
+	 * @param endTime
+	 * @param leftLatitude 
+	 * @param leftLongitude 
+	 * @param rightLatitude  
+	 * @param rightLongitude  
+	 * @return
+	 * @throws ParseException 
+	 */
+	@PostMapping("/data/ver1/queryShopBusiness/{random}")
+	public @ResponseBody String queryShopBusiness(@RequestParam("shopId")String shopId,@RequestParam("startTime")String startTime,
+			@RequestParam("endTime")String endTime,@RequestParam("leftLatitude")String leftLatitude,
+			@RequestParam("leftLongitude")String leftLongitude,@RequestParam("rightLatitude")String rightLatitude,@RequestParam("rightLongitude")String rightLongitude) throws ParseException{
+		
+		Result<List<ShopMsgDTO>> result = new Result<List<ShopMsgDTO>>();
+		ShopDTO shopDTO=new ShopDTO();
+		if(shopId.equals("")||shopId.equals(null)) {
+			shopDTO.setShopName(null);
+		}else {
+			shopDTO.setShopName(shopId);
+		}
+		if(startTime.equals("")||startTime.equals(null)||endTime.equals(null)||endTime.equals("")) {
+			shopDTO.setStartTime(null);
+			shopDTO.setEndTime(null);
+		}else {
+			shopDTO.setStartTime(new SimpleDateFormat("yyyy-MM-ddHH:mm:ss").parse(startTime+" 00:00:00"));
+			shopDTO.setEndTime(new SimpleDateFormat("yyyy-MM-ddHH:mm:ss").parse(endTime+" 23:59:59"));
+			//System.out.println(new SimpleDateFormat("yyyy-MM-dd 23:59:59").parse(endTime));
+		}
+		
+		shopDTO.setLeftLatitude(Double.parseDouble(leftLatitude));
+		shopDTO.setLeftLongitude(Double.parseDouble(leftLongitude));
+		shopDTO.setRightLatitude(Double.parseDouble(rightLatitude));
+		shopDTO.setRightLongitude(Double.parseDouble(rightLongitude));
+		List<ShopMsgDTO> shopList=mobRegPositionService.selectShopMsg(shopDTO);
+		
+		if(shopList==null) {
+			result.setCode(ConstData.NOT_FOUND_CODE);
+			result.setMessage("不在范围内！");
+			return JSONObject.toJSONString(result, SerializerFeature.WriteMapNullValue);
+		}
+		
+		result.setCode(ConstData.SUCCESS_CODE);
+		result.setContent(shopList);
+		return JSONObject.toJSONString(result, SerializerFeature.WriteMapNullValue);		
+						
+	}
+	
+
+}

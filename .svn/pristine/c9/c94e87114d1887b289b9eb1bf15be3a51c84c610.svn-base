@@ -1,0 +1,18 @@
+package com.steward.dao.position;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.steward.dto.position.UserMsgDTO;
+
+public interface MobRegMapper {
+	/**
+	 * 区域门店用户数据leftLatitude}
+			AND   latitude  &gt;#{rightLatitude}
+			AND   longitude &lt;#{leftLongitude}
+			AND   longitude &gt;#{rightLongitude}
+	 */
+	List<UserMsgDTO> selectUserList(@Param("leftLatitude")String leftLatitude,@Param("rightLatitude")String rightLatitude,
+			@Param("leftLongitude")String leftLongitude,@Param("rightLongitude")String rightLongitude);
+}

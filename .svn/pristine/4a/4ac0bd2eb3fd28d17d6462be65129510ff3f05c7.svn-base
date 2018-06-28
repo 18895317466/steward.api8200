@@ -1,0 +1,55 @@
+package com.steward.model.position;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+public class MobRegPosition implements Serializable {
+		private String id;
+		private String mobileId;
+		private String mobileNo;
+		private String longitude;
+		private String latitude;
+		@JSONField(format = "yyyy-MM-dd HH:mm:ss")
+		private Date addDate;
+		
+		public String getId() {
+			return id;
+		}
+		public void setId(String id) {
+			this.id = id;
+		}
+		public String getMobileId() {
+			return mobileId;
+		}
+		public void setMobileId(String mobileId) {
+			this.mobileId = mobileId;
+		}
+		public String getMobileNo() {
+			return mobileNo;
+		}
+		public void setMobileNo(String mobileNo) {
+			this.mobileNo = mobileNo;
+		}
+		public String getLongitude() {
+			return longitude;
+		}
+		public void setLongitude(String longitude) {
+			this.longitude = longitude;
+		}		
+		public String getLatitude() {
+			return latitude;
+		}
+		public void setLatitude(String latitude) {
+			this.latitude = latitude;
+		}
+		public Date getAddDate() {
+			return addDate;
+		}
+		public void setAddDate(Date addDate) {
+			this.addDate = addDate;
+		}
+		
+		
+}
